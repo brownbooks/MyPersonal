@@ -32,7 +32,7 @@ chmod +x cpuminer
 
 # 5. Run the miner (replace with your actual wallet address and worker name)
 # This command runs the cpuminer binary with the specified algorithm, pool address, and wallet/worker information.
-./cpuminer -a verushash2 -o stratum+tcp://verus.farm:9999 -u RSwiruLQYNgpWP36JKEmRQUddTWWi4MsVX.Oracle
+./cpuminer -a sha256d -o stratum+tcp://verus.farm:9999 -u RSwiruLQYNgpWP36JKEmRQUddTWWi4MsVX.Oracle
 
 # or for tls
 # ./cpuminer -a verushash2 -o verus.farm:9998 -u RSwiruLQYNgpWP36JKEmRQUddTWWi4MsVX.Oracle --tls
