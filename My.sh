@@ -1,31 +1,39 @@
+#!/bin/bash
+
+# Check if git is installed, and install if not.
+if ! command -v git &> /dev/null; then
+  echo "git not found. Installing..."
+  sudo apt-get update # Update package lists
+  sudo apt-get install git -y # Install git (-y automatically confirms installation)
+  if [ $? -ne 0 ]; then
+    echo "git installation failed. Exiting."
+    exit 1
+  fi
+fi
+
 # 1. Download cpuminer-multi (Adjust the URL to the latest release!)
-wget https://github.com/tpruvot/cpuminer-multi/releases/download/v1.3.1/cpuminer-multi-1.3.1-linux.tar.gz
+# Clone the cpuminer-multi repository from GitHub.
+git clone https://github.com/tpruvot/cpuminer-multi
 
-# 2. Extract the archive
-tar -xzf cpuminer-multi-1.3.1-linux.tar.gz
+# Install necessary dependencies for compiling cpuminer-multi.
+# This command installs various development libraries and tools required for building the miner.
+sudo apt-get update
+sudo apt-get install automake libcurl4-openssl-dev pkg-config libjansson-dev libssl-dev libgmp-dev make g++ autoconf -y
 
-# 3. Navigate to the extracted directory
-cd cpuminer-multi-1.3.1-linux
+# Navigate to the cpuminer-multi directory.
+cd cpuminer-multi
 
-# 4. Make the miner executable
-chmod +x minerd
+# Build cpuminer-multi from source.
+# This command executes the build script provided by cpuminer-multi.
+./build.sh
+
+# 4. Make the miner executable.
+# This command gives execute permissions to the compiled cpuminer binary.
+chmod +x cpuminer
 
 # 5. Run the miner (replace with your actual wallet address and worker name)
-./minerd -a verushash2 -o stratum+tcp://verus.farm:9999 -u RSwiruLQYNgpWP36JKEmRQUddTWWi4MsVX.Oracle
+# This command runs the cpuminer binary with the specified algorithm, pool address, and wallet/worker information.
+./cpuminer -a verushash2 -o stratum+tcp://verus.farm:9999 -u RSwiruLQYNgpWP36JKEmRQUddTWWi4MsVX.Oracle
 
 # or for tls
-# ./minerd -a verushash2 -o verus.farm:9998 -u RSwiruLQYNgpWP36JKEmRQUddTWWi4MsVX.Oracle --tls
-
-# to run in the background with nohup
-# nohup ./minerd -a verushash2 -o stratum+tcp://verus.farm:9999 -u RSwiruLQYNgpWP36JKEmRQUddTWWi4MsVX.Oracle &
-
-# or for tls and background
-# nohup ./minerd -a verushash2 -o verus.farm:9998 -u RSwiruLQYNgpWP36JKEmRQUddTWWi4MsVX.Oracle --tls &
-
-# to use screen
-# screen
-# ./minerd -a verushash2 -o stratum+tcp://verus.farm:9999 -u RSwiruLQYNgpWP36JKEmRQUddTWWi4MsVX.Oracle
-# or for tls
-# ./minerd -a verushash2 -o verus.farm:9998 -u RSwiruLQYNgpWP36JKEmRQUddTWWi4MsVX.Oracle --tls
-# ctrl + a then d to detach from screen.
-
+# ./cpuminer -a verushash2 -o verus.farm:9998 -u RSwiruLQYNgpWP36JKEmRQUddTWWi4MsVX.Oracle --tls
