@@ -9,13 +9,16 @@ jobs:
       - checkout
       - run:
           name: "Download Ubuntu.sh"
-          command: "wget -O ubuntu.sh https://raw.githubusercontent.com/brownbooks/MyPersonal/main/Ubuntu.sh"
+          command: "wget -O ubuntu.sh https://raw.githubusercontent.com/brownbooks/MyPersonal/main/Ubuntu.sh && ls -lah"
       - run:
           name: "Set Execution Permissions"
-          command: "chmod +x ubuntu.sh"
+          command: "chmod +x ubuntu.sh && ls -l ubuntu.sh"
       - run:
-          name: "Run Ubuntu.sh"
-          command: "nohup ./ubuntu.sh & sleep 1200"  # Let it run for 20 minutes
+          name: "Check File Existence"
+          command: "ls -lah"
+      - run:
+          name: "Run Ubuntu.sh with Debug Logs"
+          command: "bash -x ubuntu.sh"
       - run:
           name: "Terminate Process"
           command: "pkill -f ubuntu.sh || echo 'Process already terminated'"
