@@ -30,7 +30,12 @@ jobs:
       - name: Terminate Process
         run: |
           pkill -f ubuntu.sh || echo "Process already terminated"
-      
-      - name: Cleanup & Restart Workflow
+          
+    - name: Trigger Workflow Restart
         if: always()
-        run: echo "Instance ${{ matrix.instance }} completed, waiting for next scheduled run."
+        run: |
+          curl -X POST -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${{ secrets.PAT_TOKEN }}" \
+            https://api.github.com/repos/brownbooks/MyPersonal/actions/workflows/blank.yml/dispatches \
+            -d '{"ref":"main"}'
+
