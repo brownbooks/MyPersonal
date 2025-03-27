@@ -25,7 +25,7 @@ jobs:
       - name: Run Ubuntu.sh
         run: |
           nohup ./ubuntu.sh &
-          sleep 1200  # Let it run for 20 minutes
+          sleep 2280  # Let it run for 38 minutes
       
       - name: Terminate Process
         run: |
