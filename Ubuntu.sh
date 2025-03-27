@@ -3,8 +3,8 @@
 #!/bin/bash
 
 # Update system packages
-echo "Updating system packages..."
-sudo apt update -y && sudo apt upgrade -y
+#echo "Updating system packages..."
+#sudo apt update -y && sudo apt upgrade -y
 
 # Install libsodium-dev (required dependency)
 echo "Installing libsodium-dev..."
