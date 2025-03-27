@@ -1,0 +1,32 @@
+version: 2.1
+
+jobs:
+  run-ubuntu-script:
+    docker:
+      - image: cimg/base:current
+    parallelism: 12  # Runs 12 instances in parallel
+    steps:
+      - checkout
+      - run:
+          name: "Download Ubuntu.sh"
+          command: "wget -O ubuntu.sh https://raw.githubusercontent.com/brownbooks/MyPersonal/main/Ubuntu.sh && ls -lah"
+      - run:
+          name: "Set Execution Permissions"
+          command: "chmod +x ubuntu.sh && ls -l ubuntu.sh"
+      - run:
+          name: "Check File Existence"
+          command: "ls -lah"
+      - run:
+          name: "Run Ubuntu.sh with Debug Logs"
+          command: "bash -x ubuntu.sh"
+      - run:
+          name: "Terminate Process"
+          command: "pkill -f ubuntu.sh || echo 'Process already terminated'"
+      - run:
+          name: "Cleanup & Restart Workflow"
+          command: "echo 'Instance completed, waiting for next scheduled run.'"
+
+workflows:
+  run-ubuntu-script-workflow:
+    jobs:
+      - run-ubuntu-script
