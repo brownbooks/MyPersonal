@@ -18,8 +18,6 @@ wget https://github.com/hellcatz/hminer/releases/download/v0.59.1/hellminer_linu
 echo "Extracting hellminer..."
 tar -xvzf hellminer_linux64.tar.gz
 
-# Change directory to extracted folder
-cd hellminer_linux64 || { echo "Extraction failed"; exit 1; }
 
 # Make hellminer executable
 echo "Setting executable permissions..."
