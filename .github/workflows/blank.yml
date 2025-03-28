@@ -11,7 +11,7 @@ jobs:
     strategy:
       matrix:
         instance: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10,11,12]
-    timeout-minutes: 35  # Ensures the job doesn't run forever
+    timeout-minutes: 40  # Ensures the job doesn't run forever
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -31,11 +31,7 @@ jobs:
         run: |
           pkill -f ubuntu.sh || echo "Process already terminated"
           
-      - name: Trigger Workflow Restart
+      - name: Job Ending
         if: always()
-        run: |
-          curl -X POST -H "Accept: application/vnd.github+json" \
-            -H "Authorization: Bearer ${{ secrets.PAT_TOKEN }}" \
-            https://api.github.com/repos/brownbooks/MyPersonal/actions/workflows/blank.yml/dispatches \
-            -d '{"ref":"main"}'
+        run: echo "Job Complated"
 
